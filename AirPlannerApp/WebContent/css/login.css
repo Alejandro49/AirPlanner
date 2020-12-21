@@ -1,0 +1,15 @@
+
+
+#formularioLogin {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+
+body {
+    position: relative;
+    background: url(../img/background2.jpg);
+    background-size: cover;
+    min-height: 100px;
+}

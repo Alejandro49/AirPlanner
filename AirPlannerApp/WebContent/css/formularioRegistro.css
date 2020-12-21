@@ -1,0 +1,6 @@
+.main-header-2 {
+    position: relative;
+    background: url(../img/background2.jpg);
+    background-size: cover;
+    min-height: 100px;
+  }
