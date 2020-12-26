@@ -1,24 +1,12 @@
-.navbar {
-  box-shadow: 2px 2px 5px #000;
-  opacity: 0.9;
-}
-
-.navbar .nav-item .nav-link {
-  color: #fff;
-}
-
 .main-header {
   position: relative;
-  background: url(../img/background.jpg);
+  background: url(../img/background2.jpg);
   background-size: cover;
   min-height: 100px;
 }
 
-.background-overlay {
-  background: rgba(48, 51, 107,.7);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.logo {
+  position: relative;
+  width: 150px;
+  height: 150px;
 }
-

@@ -17,13 +17,20 @@
     <body>
 
         <div class="login-page">
-            <div id="formularioLogin" class="bg-dark text-white">
+            <div id="formularioLogin" class="background-overlay text-white py-5">
               <form class="login-form" method="POST" action="login">
-                <input type="text" placeholder="username" name="username"/>
-                <input type="password" placeholder="password" name="password"/>
-                <input type="submit" onclick = "" class="btn btn-primary" value="Entrar">
-                <input type="button" onclick="location.href='../index.html'"class="btn btn-outline-secondary" value="Cancelar">
-                <p class="message">¿No registrado? <a href="./formularioRegistro.html">Crear una cuenta</a></p>
+                <div class="row d-flex h-100">
+                  <div class="col-sm-6 text-center justify-content-center align-self-center">
+                    <input type="text" placeholder="username" name="username"/>
+                    <input type="password" placeholder="password" name="password"/>
+                    <input type="submit" onclick = "" class="btn btn-primary" value="Entrar">
+                    <input type="button" onclick="location.href='../index.html'" class="btn btn-primary text-white" value="Cancelar">
+                    <p class="message">¿No registrado? <a href="./formularioRegistro.html" style="color: black;">Crear una cuenta</a></p>
+                  </div>
+                  <div class="col-sm-6">
+                    <img src="../img/logo.png" class="logo">
+                  </div>
+                </div>
               </form>
             </div>
         </div>

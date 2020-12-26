@@ -13,3 +13,9 @@ body {
     background-size: cover;
     min-height: 100px;
 }
+
+.logo {
+  position: relative;
+  width: 125px;
+  height: 125px;
+}
