@@ -20,10 +20,10 @@ public class UsuarioDao {
 		private String dbPassword = "1234";
 		private String dbdriver = "com.mysql.cj.jdbc.Driver"; 
 		
-		private Statement statement = null;
+		private Statement statementCreacion = null;
+		boolean tablaCreada = false;
 		
-		
-		public void cargarDriver(String dbDriver) {
+		private void cargarDriver(String dbDriver) {
 			try {
 				Class.forName(dbDriver);
 			} catch (ClassNotFoundException e) {
@@ -32,7 +32,7 @@ public class UsuarioDao {
 			}
 		}
 		
-		public Connection getConnection() {
+		private Connection getConnection() {
 			
 			Connection conn = null;
 			try {
@@ -46,32 +46,52 @@ public class UsuarioDao {
 			
 		}
 		
+		private void creacionTabla() {
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+				
+			try {
+				statementCreacion = conn.createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// id autoincremental. UserName Unique, rol por defecto = 1.
+			try {
+				statementCreacion.execute("CREATE TABLE if not exists airplanner.usuario (\r\n"
+						+ "	idUsuario int not null auto_increment,\r\n"
+						+ "	nombre VARCHAR(30) NOT NULL,\r\n"
+						+ "	apellido VARCHAR(30) NOT NULL,\r\n"
+						+ "	userName VARCHAR(30) unique NOT NULL,\r\n"
+						+ "	password VARCHAR(45) NOT NULL,\r\n"
+						+ "	rol int default 1,\r\n"
+						+ "	PRIMARY KEY (idUsuario)\r\n"
+						+ "	)");
+				conn.close();
+				tablaCreada = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error en la creación de la tabla usuario");
+				tablaCreada = false;
+			}
+		} 	
+		
+		// La primera vez que se llame a este método, se producirá la creación de la tabla usuario, y la inserción del usuario introducido en 
+		// el formulario en esta tabla. Si la tabla ya esta creada, solo se realizará la inserción del usuario.
 		// Devuelve true si se realiza la insercion del usuario en la base de datos
 		public boolean insert(Usuario user) { 
+			
+			if (tablaCreada == false) {
+				creacionTabla();
+			}
 			
 			cargarDriver(dbdriver); 
 			Connection conn = getConnection();
 			
 			boolean insercionUsuario = true;
 			
-			try {
-				statement = conn.createStatement();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				insercionUsuario = false;
-
-			}
-			try {
-				statement.execute("CREATE TABLE IF NOT EXISTS usuario (nombre varchar(100), apellido varchar(100), userName varchar(100), "
-						+ "password varchar(100), rol tinyint)");
-			} catch (Exception e) {
-				System.out.println(e);
-				insercionUsuario = false;
-
-			}
-			// Ultimo valor indica rol = 1 (usuario normal)
-			String sql = "insert into airplanner.usuario values(?,?,?,?,1)";
+			String sql = "insert into airplanner.usuario(nombre, apellido, userName, password) values(?,?,?,?)";
 			
 			try {
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -80,9 +100,11 @@ public class UsuarioDao {
 				ps.setString(3, user.getUserName());
 				ps.setString(4, user.getPassword());
 				ps.executeUpdate();
+				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Error en la insercion del usuario");
 				insercionUsuario = false;
 			}
 			return insercionUsuario;

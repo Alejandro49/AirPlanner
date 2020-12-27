@@ -1,0 +1,2 @@
+insert into airplanner.usuario(nombre, apellido, userName, password) values('prueba','prueba','prueba','prueba');
+insert into airplanner.usuario(nombre, apellido, userName, password) values('prueba2','prueba2','prueba2','prueba2');
