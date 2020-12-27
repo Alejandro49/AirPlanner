@@ -2,8 +2,8 @@ package principal;
 
 public class Usuario {
 	
-	private String nombre, apellido1, apellido2, nombreUsuario, email, nacionalidad, dni, contraseña;
-	private String telefono;
+	private String nombre, apellido, userName, password;
+	int rol;
 	
 	
 	public Usuario() {
@@ -13,22 +13,19 @@ public class Usuario {
 	//	Constructor de Usuario solo con username y password, utilizado en la comprobación del login.
 	public Usuario(String username, String password) {
 		super();
-		this.nombreUsuario = username;
-		this.contraseña = password;
+		this.userName = username;
+		this.password = password;
 	}
 	
-	public Usuario(String nombre, String apellido1, String apellido2, String nombreUsuario, String email,
-			String nacionalidad, String dni, String telefono, String contraseña) {
+	
+	// rol de usuario por defecto = 1
+	public Usuario(String nombre, String apellido, String userName, String password) {
 		super();
 		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
-		this.nombreUsuario = nombreUsuario;
-		this.email = email;
-		this.nacionalidad = nacionalidad;
-		this.dni = dni;
-		this.telefono = telefono;
-		this.contraseña = contraseña;
+		this.apellido = apellido;
+		this.userName = userName;
+		this.password = password;
+		this.rol = 1;
 	}
 
 	public String getNombre() {
@@ -39,70 +36,29 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public String getApellido1() {
-		return apellido1;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public String getApellido2() {
-		return apellido2;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNacionalidad() {
-		return nacionalidad;
-	}
-
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-	
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getContraseña() {
-		return contraseña;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
-
 	
 	
 	

@@ -44,16 +44,11 @@ public class ServletRegistro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nombre = request.getParameter("name");
-		String apellido1 = request.getParameter("apellido1");
-		String apellido2 = request.getParameter("apellido2");
-		String nombreUsuario = request.getParameter("UserName");
-		String email = request.getParameter("email");
-		String nacionalidad = request.getParameter("nationality");
-		String dni = request.getParameter("dni");
-		String telefono = request.getParameter("phone");
-		String contraseña = request.getParameter("password");
+		String apellido = request.getParameter("apellido");
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
 		
-		Usuario user = new Usuario(nombre, apellido1, apellido2, nombreUsuario, email, nacionalidad, dni, telefono, contraseña);
+		Usuario user = new Usuario(nombre, apellido, userName, password);
 		
 		UsuarioDao userDao = new UsuarioDao();
 		boolean usuarioRegistrado = userDao.insert(user);

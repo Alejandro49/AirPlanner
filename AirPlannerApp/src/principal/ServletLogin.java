@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletLogin
@@ -44,6 +45,10 @@ public class ServletLogin extends HttpServlet {
 		UsuarioDao dao = new UsuarioDao();
 		
 		if (dao.validarUsuario(user)) {
+			
+			HttpSession sesion = request.getSession();
+			sesion.setAttribute("userName", username);
+			sesion.setAttribute("rol", obtenerRol(user));
 			response.sendRedirect("dashboard.html");
 		}
 		else {
@@ -57,6 +62,13 @@ public class ServletLogin extends HttpServlet {
 				out.println("</body></html>");
 				} finally{out.close();}
 		}
+		
+	}
+	
+	private int obtenerRol(Usuario user) {
+		
+		UsuarioDao dao = new UsuarioDao();
+		 return dao.obtenerRol(user);
 		
 	}
 
