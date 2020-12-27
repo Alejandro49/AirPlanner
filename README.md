@@ -37,17 +37,18 @@ Se necesita meter en la carpeta lib se la carpeta origen del Servidor Apache Tom
 
 # Base De Datos
 
-Requisito: MySQL
+- Requisito: Servidor MySQL
+	Para que funcione la conexión con la base de datos, hay que tener configurado un usuario: root con password: 1234
 
-
-Para la creación de la base de datos airplanner", se proporciona el fichero ./db/creacion.sql", para crear la base de datos ejecutar el siguiente comando en el CLI de MySQL:
-
-		1. source C:\ruta\al\fichero\creacion.sql
-		
-Para insertar usuarios de prueba leemos el otro fichero de este directorio "insercion.sql" con el siguiente comando:
-
-		2. source C:\ruta\al\fichero\insercion.sql
-
+- Para la creación de la base de datos, se proporciona el fichero ./db/"creacionSchema.sql".
+	Ejecutar el siguiente comando en la consola CLI de MySQL:
+	
+		1. source C:\ruta\al\fichero\creacionSchema.sql
+	
+	De esta forma se crea la base de datos vacía, requisito necesario antes de la ejecución de la aplicación.
+	
+- Para más información para los desarrolladores, en los ficheros ./db/"creacionTablas.sql" y ./db/"insercion.sql" se encuentran los scripts de creacion de las tablas de la base de datos que se van a ejecutar durante la ejecución de la aplicación y ejemplos del formato de inserciones en las tablas que se realizarán durante la ejecución.
+- Esto se incorpora para que puedan entender como está estructurada la base de datos por dentro.
 
 
 
