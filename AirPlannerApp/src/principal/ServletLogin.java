@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,7 +51,29 @@ public class ServletLogin extends HttpServlet {
 			sesion.setAttribute("userName", username);
 			sesion.setAttribute("rol", dao.obtenerRol(user));
 			
-			response.sendRedirect("dashboard_usuario.html");
+			Cookie loginCookie = new Cookie("userName",user.getUserName());
+			loginCookie.setMaxAge(30*60);
+			response.addCookie(loginCookie);
+			
+			if ((int)sesion.getAttribute("rol") == 1) {
+				response.sendRedirect("dashboard_usuario.html");
+			}
+			if ((int)sesion.getAttribute("rol") == 2) {
+				response.sendRedirect("dashboard_premium.html");
+			} else {
+				
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				try {
+					out.println("<html><head><title>Error en la gestion de la sesion </title></head><body>");
+					out.println("<h1>" + "Se ha producido un error en la gestion de la sesión "   + "</h1>");
+					out.println(" <input type=\"button\" onclick=\"location.href='login.html'\"class=\"btn btn-outline-secondary\" value=\"Volver\">");
+					out.println("</body></html>");
+					} finally{out.close();}
+				
+			}
+			
 		}
 		else {
 			response.setContentType("text/html;charset=UTF-8");

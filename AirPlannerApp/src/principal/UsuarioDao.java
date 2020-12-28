@@ -137,7 +137,8 @@ public class UsuarioDao {
 			return loginUsuario;
 		}
 		
-		public Integer obtenerRol(Usuario user) {
+		//Devuelve 1 si se trata de un usuario normal o 2 si se trata de un usuario premium
+		public int obtenerRol(Usuario user) {
 			
 			Integer rol = null;
 			
@@ -159,7 +160,6 @@ public class UsuarioDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			
 			System.out.println(rol);
 			return rol;
