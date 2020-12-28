@@ -48,8 +48,9 @@ public class ServletLogin extends HttpServlet {
 			
 			HttpSession sesion = request.getSession();
 			sesion.setAttribute("userName", username);
-			sesion.setAttribute("rol", obtenerRol(user));
-			response.sendRedirect("dashboard.html");
+			sesion.setAttribute("rol", dao.obtenerRol(user));
+			
+			response.sendRedirect("dashboard_usuario.html");
 		}
 		else {
 			response.setContentType("text/html;charset=UTF-8");
@@ -65,11 +66,5 @@ public class ServletLogin extends HttpServlet {
 		
 	}
 	
-	private int obtenerRol(Usuario user) {
-		
-		UsuarioDao dao = new UsuarioDao();
-		 return dao.obtenerRol(user);
-		
-	}
 
 }

@@ -1,0 +1,1 @@
+select rol from airplanner.usuario where userName = 'llorente98'

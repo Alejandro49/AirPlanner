@@ -20,6 +20,7 @@ public class UsuarioDao {
 		private String dbPassword = "1234";
 		private String dbdriver = "com.mysql.cj.jdbc.Driver"; 
 		
+		private Statement statementConsulta = null;
 		private Statement statementCreacion = null;
 		boolean tablaCreada = false;
 		
@@ -139,23 +140,28 @@ public class UsuarioDao {
 		public Integer obtenerRol(Usuario user) {
 			
 			Integer rol = null;
+			
 			cargarDriver(dbdriver); 
 			Connection conn = getConnection();
 			
-			String sql = "select rol from airplanner.usuario where userName = ?";
+			String userName = user.getUserName();
+			String userNameSql = "'" + userName + "'";
+			
+			String query = "select rol from airplanner.usuario where userName = " + userNameSql;
 			
 			try {
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setString(1, user.getUserName());
-				
-				ResultSet resultadoConsulta = ps.executeQuery();
-				rol = resultadoConsulta.getInt(1);
-				conn.close();
-			
+				statementConsulta = conn.createStatement();
+				ResultSet rs = statementConsulta.executeQuery(query);
+				while (rs.next()) {
+					rol = rs.getInt("rol");
+				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block 
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
+			System.out.println(rol);
 			return rol;
 			
 		}

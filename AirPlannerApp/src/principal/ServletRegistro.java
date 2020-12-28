@@ -39,8 +39,7 @@ public class ServletRegistro extends HttpServlet {
 	}
 
 	
-	// La primera vez que se llame a este método, se producirá la creación de la tabla usuario, y la inserción del usuario introducido en 
-	// el formulario en esta tabla.
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nombre = request.getParameter("name");
