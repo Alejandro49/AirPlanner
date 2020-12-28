@@ -30,7 +30,7 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="#">Inicio</a>
+							<a class="nav-link" href="dashboard_usuario.html">Inicio</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Mi Perfil</a>
@@ -48,19 +48,33 @@
 							<a class="nav-link" href="#">Configuración</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="logout_usuario.html">Logout</a>
+							<a class="nav-link" href="#">Logout</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
-		<div style="text-align: center;">
-			<h1>
-				Air Planner
-			</h1>
-			<p>Página en desarrollo</p>
+		<div class="banner" id="banner">
+  			<div class="bg-overlay">
+   				 <div class="container">
+     				 <div class="row">
+      				 	<div class="col-md-12">
+          					<div class="banner-text">
+								<form method="POST" action="logout">
+									<div align="center">
+										<input type="radio" value="si" checked name="OPCION"> Salir
+										<input type="radio" name="OPCION" value="no"> Cancelar										
+                      					<input type="submit" class="btn btn-primary" value="Enviar" name="BotonEnviar">
+                      				</div>
+								</form>
+							</div>
+      					</div>
+    				</div>
+  				</div>
+			</div>
 		</div>
+		
 		<!--BOOTSTRAP JAVASCRIPT + JQuery --> 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
