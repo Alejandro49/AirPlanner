@@ -8,4 +8,14 @@ CREATE TABLE if not exists airplanner.usuario (
 	rol int default 1,
 	PRIMARY KEY (idUsuario)
 	);
+	
+	
+	CREATE TABLE if not exists airplanner.vuelo (
+	idVuelo int not null auto_increment,
+	origen VARCHAR(30) NOT NULL,
+	destino VARCHAR(30) NOT NULL,
+	precio int NOT NULL,
+	fechaSalida date NOT NULL,
+	PRIMARY KEY (idVuelo)
+	);
 
