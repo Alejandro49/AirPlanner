@@ -16,6 +16,7 @@ CREATE TABLE if not exists airplanner.usuario (
 	destino VARCHAR(30) NOT NULL,
 	precio int NOT NULL,
 	fechaSalida date NOT NULL,
+	oferta varchar(30) not null,
 	PRIMARY KEY (idVuelo)
 	);
 

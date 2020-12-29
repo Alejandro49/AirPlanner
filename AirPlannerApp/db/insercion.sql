@@ -3,4 +3,5 @@ insert into airplanner.usuario(nombre, apellido, userName, password) values('pru
 
 
 
-insert into airplanner.vuelo(origen, destino, precio, fechaSalida) values('Madrid','Paris',100,'2020-06-24');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Paris',100,'2020-06-24','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Barcelona',20,'2020-12-24','premium');
