@@ -3,5 +3,43 @@ insert into airplanner.usuario(nombre, apellido, userName, password) values('pru
 
 
 
-insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Paris',100,'2020-06-24','normal');
-insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Barcelona',20,'2020-12-24','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Paris',100,'2021-01-24','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Barcelona',20,'2021-01-27','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Roma',85,'2021-01-25','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Lisboa',45,'2021-02-18','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Tokyo',500,'2021-02-31','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Moscu',250,'2021-02-21','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Milan',230,'2021-02-19','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Amsterdam',120,'2021-02-26','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Londres',115,'2021-02-24','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Madrid','Shanghai',350,'2021-02-18','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Bilbao',30,'2021-01-20','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Malaga',30,'2021-01-20','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Ibiza',70,'2021-01-21','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Varsovia',80,'2021-01-30','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Viena',150,'2021-01-22','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Istambul',230,'2021-01-31','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Bangkok',400,'2021-01-19','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Mallorca',50,'2021-01-23','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Sevilla',30,'2021-01-20','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Dubai',200,'2021-01-28','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Dublín',90,'2021-01-22','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Milan',180,'2021-01-28','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Barcelona','Londres',110,'2021-01-31','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Malaga','Berlin',140,'2021-01-19','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Malaga','Amsterdam',130,'2021-01-30','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Malaga','Paris',145,'2021-01-29','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('	Malaga','Madrid',60,'2021-01-19','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('	Malaga','Amsterdam',130,'2021-01-30','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('	Malaga','Moscu',230,'2021-01-20','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('	Malaga','Napoles',90,'2021-01-23','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Santander','Sevilla',35,'2021-01-26','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Santander','Madrid',17,'2021-01-24','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Santander','Bilbao',25,'2021-01-25','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Santander','Barcelona',20,'2021-01-22','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Santander','Burdeos',39,'2021-01-21','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Santander','Sevilla',35,'2021-01-26','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Tenerife','Sevilla',25,'2021-01-28','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Tenerife','Mallorca',50,'2021-01-23','normal');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Tenerife','Malaga',10,'2021-01-28','premium');
+insert into airplanner.vuelo(origen, destino, precio, fechaSalida, oferta) values('Tenerife','Ceuta',24,'2021-01-19','normal');
