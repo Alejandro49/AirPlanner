@@ -4,7 +4,7 @@
 Para importar y que se pueda ejecutar el proyecto con Eclipse Enterprise Edition seguir las siguientes instrucciones:
 1. File -> import
 2. Seleccionar Git -> Proyects from Git
-3. Clone URI, en URI, copiar dirección del repositorio: "direccion_repo"
+3. Clone URI, en URI, copiar dirección del repositorio: "https://github.com/Alejandro49/AirPlanner.git"
 4. En branch Selection dejar rama master predeterminada ->Next
 5. En Local Destination, seleccionar carpeta que quieres que sea la carpeta del proyecto ->Next
 6. Select a wizard to use for importing projects:
