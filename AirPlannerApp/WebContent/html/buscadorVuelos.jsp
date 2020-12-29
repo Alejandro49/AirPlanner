@@ -29,38 +29,24 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="#">Inicio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" onclick="alert('Acceso denegado')">Mi Perfil</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="buscadorVuelos.jsp">Mostrar Recomendaciones</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" onclick="alert('Acceso denegado')">Compra de experiencias</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" onclick="alert('Acceso denegado')">Lista de desesos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" onclick="alert('Acceso denegado')">Configuración</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="../index.html">Logout</a>
-						</li>
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
-
-		<div style="text-align: center;">
-			<h1>
-				Air Planner
-			</h1>
-			<p>Página en desarrollo</p>
+		<div>
+			<form id="formulario" class="bg-dark text-white" method="POST" action="buscarVuelos">
+				<p> Seleccione el rango de precios que mas se ajuste a su presupuesto </p>
+				<select name="precios">
+					<option value="bajo"> 0 a 30 euros</option>
+					<option value="medio" selected="selected"> 30 a 60 euros</option>
+	   				<option value="alto"> M�s de 60 euros </option>
+				</select> <br>
+				<input type="submit" class="btn btn-primary" value="Buscar vuelos" name="botonEnviar">
+			</form>
 		</div>
+		
+	
 		<!--BOOTSTRAP JAVASCRIPT + JQuery --> 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
