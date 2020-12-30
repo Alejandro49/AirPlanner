@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MostrarVuelosServlet
@@ -68,42 +69,76 @@ public class MostrarVuelosServlet extends HttpServlet {
 			out.println("");
 			out.println("<H2 align=\"center\"> Mejores recomendaciones de vuelos con los datos introducidos </H2>");
 			out.println("<div align=\"center\"><center>");
+			out.println("<form method=\"POST\" action=\"listaDeseos\">");
 			out.println("");
 			out.println("<table border=\"1\" width=\"70%\">");
 			
 			out.println("<tr>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
-			"<font color=\"#FFFFFF\"> Link </font></td>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
+			out.println("<td width=\"16%\" bgcolor=\"#808080\">"+
 			"<font color=\"#FFFFFF\"> Id Vuelo </font></td>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
+			out.println("<td width=\"16%\" bgcolor=\"#808080\">"+
 			"<font color=\"#FFFFFF\"> Origen </font></td>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
+			out.println("<td width=\"16%\" bgcolor=\"#808080\">"+
 			"<font color=\"#FFFFFF\"> Destino </font></td>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
+			out.println("<td width=\"16%\" bgcolor=\"#808080\">"+
 			"<font color=\"#FFFFFF\"> Precio (€) </font></td>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
+			out.println("<td width=\"16%\" bgcolor=\"#808080\">"+
 			"<font color=\"#FFFFFF\"> fechaSalida </font></td>");
-			out.println("<td width=\"14%\" bgcolor=\"#808080\">"+
+			out.println("<td width=\"16%\" bgcolor=\"#808080\">"+
 			"<font color=\"#FFFFFF\"> Tipo de Oferta </font></td>");
 			out.println("</tr>");
 			
 			//Datos de los vuelos por filas
 			
 			vuelos = generarVuelos(request);
+			
+			
+		
 			for (Vuelo vuelo: vuelos) {
+				
 				out.println("<tr>");
-				out.println("<td width=\"14%\">"+"<a href=\"https://video-6553-dwmdqw.twil.io/index.html\">Link</a> </td>");
-				out.println("<td width=\"14%\">"+vuelo.getIdVuelo()+"</td>");
+				out.println("<td width=\"14%\"><input type=\"radio\" value=" + vuelo.getIdVuelo() + " checked name=\"OPCION\">"+vuelo.getIdVuelo() + "</input></td>");
+				//out.println("<td width=\"14%\">"+vuelo.getIdVuelo()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getOrigen()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getDestino()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getPrecio()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getFechaSalida()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getOferta()+"</td>");
 				out.println("</tr>");
+				
+				
 			}
+		
 			
-		} else {
+			if (request.getSession().getAttribute("rol") != null) {
+        		
+        		if (comprobarRolUsuario(request.getSession()) == 1) { // caso de usuario normal
+        				
+        			out.println("</table>");
+        			out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Enviar\" name=\"BotonEnviar\">");
+        			out.println("</form>");
+            		
+            	} else { // caso de usuario premium
+            		
+            		out.println("</table>");
+        			out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Enviar\" name=\"BotonEnviar\">");
+        			
+        			out.println("</form>");
+            		
+            	}
+        
+        		
+        	} else { // Caso de invitado
+        		
+        		out.println("</table>");
+    			out.println(" <input type=\"button\" onclick=\"location.href='dashboard_invitado.html'\" class=\"btn btn-primary text-white\" value=\"Cancelar\">");
+    			
+    			out.println("</form>");
+        		
+        	}
+		}
+			
+		 else {
 			
 			mensajeError(response);
 				
@@ -202,6 +237,12 @@ public class MostrarVuelosServlet extends HttpServlet {
 
 		return precio;
 		
+	}
+	
+	private int comprobarRolUsuario(HttpSession sesion) {
+		int rol = (int) sesion.getAttribute("rol");
+		
+		return rol;
 	}
 	
 
