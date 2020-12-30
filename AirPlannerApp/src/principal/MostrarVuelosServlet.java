@@ -40,12 +40,19 @@ public class MostrarVuelosServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
+		String origen = request.getParameter("origen");
+		String destino = request.getParameter("destino");
 		String precio = request.getParameter("precios");
+		String fechaSalida = request.getParameter("fechaSalida");
+		
 		try {
 			out.println("<html>");
 			out.println("<head><title>Hola mundo</title></head>");
 			out.println("<body>");
-			out.println("<h1>¡Hola mundo!" + precio + "</h1>");
+			out.println("<h1>¡Hola mundo!    " + origen + "</h1>");
+			out.println("<h1>¡Hola mundo!    " + destino + "</h1>");
+			out.println("<h1>¡Hola mundo!    " + precio + "</h1>");
+			out.println("<h1>¡Hola mundo!    " + fechaSalida + "</h1>");
 			out.println("</body></html>");
 		} finally {
 			out.close();

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<!-- Required meta tags -->
+		<meta charset = "UTF-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<!-- BOOTSTRAP CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		
+		<!-- CUSTOM CSS -->
+		<link rel="stylesheet" href="../css/formularioRegistro.css">
+		<title>Air Planner</title>
+	</head>
+	
+	<body class="main-header-2">
+		<!-- Formulario -->
+		<div class="container my-5" style="width:fit-content; height:fit-content;">
+			<p> <strong>Seleccione las características del vuelo que está buscando y le recomendaremos los mejores vuelos </strong></p>
+			<form id="formulario" class="bg-dark text-white" method="POST" action="buscarVuelos">
+				<label for="origen">Ciudad Origen</label>
+				<input name="origen" type="text" class="form-control"/><br />
+					
+				<label for="destino">Ciudad Destino:</label>
+				<input name="destino" type="text"class="form-control"/><br />
+				
+				<label for="precios">Seleccione el rango de precios que mejor se adapte a su presupuesto:</label>
+				<select name="precios">
+					<option value="precioBajo"> 0 a 50 euros</option>
+					<option value="precioMedio" selected="selected"> 50 a 100 euros</option>
+	   				<option value="precioAlto"> Más de 100 euros </option>
+				</select>  <br />
+				
+				<label for="fechaSalida">Introduzca la fecha de salida planeada:</label>
+				<input name="fechaSalida" type="date" class="form-control"/><br />
+
+				<input type="submit" class="btn btn-primary" value="Buscar Vuelos">
+				<input type="button" onclick="location.href='volverDashboard.html'"class="btn btn-outline-secondary" value="Volver">
+												
+			</form>  
+		</div>	
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../js/formularioRegistro.js"> </script> 
+	</body>
+</html>

@@ -54,26 +54,17 @@
 				</div>
 			</div>
 		</nav>
-
-		<div class="banner" id="banner">
-  			<div class="bg-overlay">
-   				 <div class="container">
-     				 <div class="row">
-      				 	<div class="col-md-12">
-          					<div class="banner-text">
-								<form method="POST" action="logout">
-									<div align="center">
-										<input type="radio" value="si" checked name="OPCION"> Salir
-										<input type="radio" name="OPCION" value="no"> Cancelar										
-                      					<input type="submit" class="btn btn-primary" value="Enviar" name="BotonEnviar">
-                      				</div>
-								</form>
-							</div>
-      					</div>
-    				</div>
-  				</div>
-			</div>
+		<div class="container my-5" style="width:fit-content; height:fit-content;">
+			<p> <strong> ¿Seguro que quiere cerrar sesión?</strong></p>
+			<form method="POST" action="logout">
+				<div align="center">
+					<input type="radio" value="si" checked name="OPCION"> Salir
+					<input type="radio" name="OPCION" value="no"> Cancelar										
+                    <input type="submit" class="btn btn-primary" value="Enviar" name="BotonEnviar">
+                </div>
+			</form>
 		</div>
+								
 		
 		<!--BOOTSTRAP JAVASCRIPT + JQuery --> 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
