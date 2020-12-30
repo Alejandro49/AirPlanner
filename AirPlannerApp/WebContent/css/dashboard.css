@@ -12,3 +12,8 @@
     background: url(../img/background2.jpg);
     background-size: cover;
   }
+
+  .inicio {
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+  }
