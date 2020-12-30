@@ -8,13 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+public class VueloDao {
 
-
-public class UsuarioDao {
-	
-	
-		//puero 3306: puerto de escucha servidor sql
-		//airplanner: nombre de la base de datos
+	//puero 3306: puerto de escucha servidor sql
+	//airplanner: nombre de la base de datos
 		private String dbUrl = "jdbc:mysql://localhost:3306/airplanner?serverTimezone=UTC"; 
 		private String dbUname = "root";
 		private String dbPassword = "1234";
@@ -60,14 +57,14 @@ public class UsuarioDao {
 			}
 			// id autoincremental. UserName Unique, rol por defecto = 1.
 			try {
-				statementCreacion.execute("CREATE TABLE if not exists airplanner.usuario (\r\n"
-						+ "	idUsuario int not null auto_increment,\r\n"
-						+ "	nombre VARCHAR(30) NOT NULL,\r\n"
-						+ "	apellido VARCHAR(30) NOT NULL,\r\n"
-						+ "	userName VARCHAR(30) unique NOT NULL,\r\n"
-						+ "	password VARCHAR(45) NOT NULL,\r\n"
-						+ "	rol int default 1,\r\n"
-						+ "	PRIMARY KEY (idUsuario)\r\n"
+				statementCreacion.execute("CREATE TABLE if not exists airplanner.vuelo (\r\n"
+						+ "	idVuelo int not null auto_increment,\r\n"
+						+ "	origen VARCHAR(30) NOT NULL,\r\n"
+						+ "	destino VARCHAR(30) NOT NULL,\r\n"
+						+ "	precio int NOT NULL,\r\n"
+						+ "	fechaSalida date NOT NULL,\r\n"
+						+ "	oferta varchar(30) not null,\r\n"
+						+ "	PRIMARY KEY (idVuelo)\r\n"
 						+ "	)");
 				conn.close();
 				tablaCreada = true;
@@ -78,9 +75,7 @@ public class UsuarioDao {
 			}
 		} 	
 		
-		// La primera vez que se llame a este método, se producirá la creación de la tabla usuario, y la inserción del usuario introducido en 
-		// el formulario en esta tabla. Si la tabla ya esta creada, solo se realizará la inserción del usuario.
-		// Devuelve true si se realiza la insercion del usuario en la base de datos
+		
 		public boolean insert(Usuario user) { 
 			
 			if (tablaCreada == false) {
@@ -110,60 +105,8 @@ public class UsuarioDao {
 			}
 			return insercionUsuario;
 		}
-		
-		// Devuelve true si los credenciales son correctos, devuelve false si los credenciales no coinciden con ningún usuario registrado
-		public boolean validarUsuario(Usuario user) { 
-			cargarDriver(dbdriver); 
-			Connection conn = getConnection();
-			
-			boolean loginUsuario = false;
-			
-			String sql = "select * from airplanner.usuario where userName = ? and password = ?";
-			
-			try {
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setString(1, user.getUserName());
-				ps.setString(2, user.getPassword());
-				
-				ResultSet resultadoConsulta = ps.executeQuery();
-				loginUsuario = resultadoConsulta.next();
-				conn.close();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block 
-				e.printStackTrace();
-			}
-			
-			return loginUsuario;
-		}
-		
-		//Devuelve 1 si se trata de un usuario normal o 2 si se trata de un usuario premium
-		public int obtenerRol(Usuario user) {
-			
-			Integer rol = null;
-			
-			cargarDriver(dbdriver); 
-			Connection conn = getConnection();
-			
-			String userName = user.getUserName();
-			String userNameSql = "'" + userName + "'";
-			
-			String query = "select rol from airplanner.usuario where userName = " + userNameSql;
-			
-			try {
-				statementConsulta = conn.createStatement();
-				ResultSet rs = statementConsulta.executeQuery(query);
-				while (rs.next()) {
-					rol = rs.getInt("rol");
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			System.out.println(rol);
-			return rol;
-			
-		}
-		
+
+	
+	
+
 }

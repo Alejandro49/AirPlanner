@@ -45,7 +45,7 @@ public class VolverServlet extends HttpServlet {
         }
 
         if(volver.equals("si")){
-        	if (request.getSession(false).getAttribute("rol") != null) {
+        	if (request.getSession().getAttribute("rol") != null) {
         		
         		if (comprobarRolUsuario(request.getSession()) == 1) {
             		response.sendRedirect("dashboard_usuario.html");
