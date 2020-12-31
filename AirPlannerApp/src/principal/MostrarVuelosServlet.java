@@ -91,14 +91,19 @@ public class MostrarVuelosServlet extends HttpServlet {
 			//Datos de los vuelos por filas
 			
 			vuelos = generarVuelos(request);
+			HttpSession sesion = request.getSession();
 			
-			
+			if (sesion.getAttribute("vuelos") != null) {
+				sesion.removeAttribute("vuelos");
+				sesion.setAttribute("vuelos", vuelos);
+			} else {
+				sesion.setAttribute("vuelos", vuelos);
+			}
 		
 			for (Vuelo vuelo: vuelos) {
 				
 				out.println("<tr>");
 				out.println("<td width=\"14%\"><input type=\"radio\" value=" + vuelo.getIdVuelo() + " checked name=\"OPCION\">"+vuelo.getIdVuelo() + "</input></td>");
-				//out.println("<td width=\"14%\">"+vuelo.getIdVuelo()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getOrigen()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getDestino()+"</td>");
 				out.println("<td width=\"14%\">"+vuelo.getPrecio()+"</td>");
@@ -115,14 +120,15 @@ public class MostrarVuelosServlet extends HttpServlet {
         		if (comprobarRolUsuario(request.getSession()) == 1) { // caso de usuario normal
         				
         			out.println("</table>");
-        			out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Enviar\" name=\"BotonEnviar\">");
+        			out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Añadir a la lista de deseos\" name=\"BotonEnviar\">");
+        			out.println(" <input type=\"button\" onclick=\"location.href='dashboard_usuario.html'\" class=\"btn btn-primary text-white\" value=\"Volver\">");
         			out.println("</form>");
             		
             	} else { // caso de usuario premium
             		
             		out.println("</table>");
-        			out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Enviar\" name=\"BotonEnviar\">");
-        			
+        			out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Añadir a la lista de deseos\" name=\"BotonEnviar\">");
+        			out.println(" <input type=\"button\" onclick=\"location.href='dashboard_premium.html'\" class=\"btn btn-primary text-white\" value=\"Volver\">");
         			out.println("</form>");
             		
             	}
@@ -131,7 +137,8 @@ public class MostrarVuelosServlet extends HttpServlet {
         	} else { // Caso de invitado
         		
         		out.println("</table>");
-    			out.println(" <input type=\"button\" onclick=\"location.href='dashboard_invitado.html'\" class=\"btn btn-primary text-white\" value=\"Cancelar\">");
+        		out.println("<a onclick=\"alert('Debes registrarte para poder utilizar esta funcionalidad')\"> <strong> Añadir a la lista de deseos </strong> </a>");
+    			out.println(" <input type=\"button\" onclick=\"location.href='dashboard_invitado.html'\" class=\"btn btn-primary text-white\" value=\"Volver\">");
     			
     			out.println("</form>");
         		

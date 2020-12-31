@@ -2,6 +2,7 @@ package principal;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +39,7 @@ public class ListaDeDeseosServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		 String idVuelo = request.getParameter("OPCION");
+		 ArrayList<Vuelo> vuelos = (ArrayList<Vuelo>) request.getSession().getAttribute("vuelos");
 		 
 		 	response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -46,6 +48,12 @@ public class ListaDeDeseosServlet extends HttpServlet {
 				out.println("<head><title>Hola mundo</title></head>");
 				out.println("<body>");
 				out.println("<h1>¡Hola mundo!" + idVuelo + "</h1>");
+				
+				for (Vuelo vuelo: vuelos) {
+					
+					out.println("<h4>¡Hola mundo!" + vuelo.getIdVuelo() + "</h4>");
+				}
+		
 				
 				out.println("</body></html>");
 			} finally {
