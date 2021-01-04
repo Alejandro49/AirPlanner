@@ -60,6 +60,15 @@ public class LogoutServlet extends HttpServlet {
             }
             
             HttpSession sesion = request.getSession(false);
+            String userName = (String) sesion.getAttribute("userName");
+            
+            
+            if (comprobarRolUsuario(request.getSession()) == 1) { // en caso de ser usuario normal, se borra la lista de deseos al salir.
+            	VueloDao dao = new VueloDao();
+            	dao.eliminarListaDeDeseos(userName);
+        	}
+        	
+           
             sesion.invalidate();
             response.sendRedirect("../index.html");
 

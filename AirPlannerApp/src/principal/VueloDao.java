@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class VueloDao {
 
@@ -55,28 +58,31 @@ public class VueloDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// id autoincremental. UserName Unique, rol por defecto = 1.
+			
 			try {
 				statementCreacion.execute("CREATE TABLE if not exists airplanner.vuelo (\r\n"
-						+ "	idVuelo int not null auto_increment,\r\n"
+						+ "	idVuelo int not null,\r\n"
 						+ "	origen VARCHAR(30) NOT NULL,\r\n"
 						+ "	destino VARCHAR(30) NOT NULL,\r\n"
 						+ "	precio int NOT NULL,\r\n"
 						+ "	fechaSalida date NOT NULL,\r\n"
 						+ "	oferta varchar(30) not null,\r\n"
-						+ "	PRIMARY KEY (idVuelo)\r\n"
-						+ "	)");
+						+ "	userName VARCHAR(30) NOT NULL,\r\n"
+						+ "	PRIMARY KEY (idVuelo),\r\n"
+						+ "	foreign key (userName) references usuario(userName) on delete cascade on update cascade\r\n"
+						+ "	\r\n"
+						+ " )");
 				conn.close();
 				tablaCreada = true;
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Error en la creación de la tabla usuario");
+				System.out.println("Error en la creación de la tabla \"vuelo\" ");
 				tablaCreada = false;
 			}
 		} 	
 		
-		
-		public boolean insert(Usuario user) { 
+		//Devuelve true si se produce la correcta inserción del vuelo en la base de datos.
+		public boolean insert(Vuelo vuelo) { 
 			
 			if (tablaCreada == false) {
 				creacionTabla();
@@ -85,26 +91,107 @@ public class VueloDao {
 			cargarDriver(dbdriver); 
 			Connection conn = getConnection();
 			
-			boolean insercionUsuario = true;
+			boolean insercionVuelo = true;
 			
-			String sql = "insert into airplanner.usuario(nombre, apellido, userName, password) values(?,?,?,?)";
+			String sql = "insert into airplanner.vuelo(idVuelo, origen, destino, precio, fechaSalida, oferta, userName) values(?,?,?,?,?,?,?);";
 			
 			try {
 				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setString(1, user.getNombre());
-				ps.setString(2, user.getApellido());
-				ps.setString(3, user.getUserName());
-				ps.setString(4, user.getPassword());
+				ps.setInt(1, vuelo.getIdVuelo());
+				ps.setString(2, vuelo.getOrigen());
+				ps.setString(3, vuelo.getDestino());
+				ps.setInt(4, vuelo.getPrecio());
+				ps.setString(5, vuelo.getFechaSalida());
+				ps.setString(6, vuelo.getOferta());
+				ps.setString(7, vuelo.getUserName());
 				ps.executeUpdate();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("Error en la insercion del usuario");
-				insercionUsuario = false;
+				System.out.println("Error en la insercion del vuelo");
+				insercionVuelo = false;
 			}
-			return insercionUsuario;
+			return insercionVuelo;
 		}
+		
+		public ArrayList<Vuelo> obtenerListaDeseos(String username) {
+			ArrayList <Vuelo> vuelos = new ArrayList<Vuelo>();
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			
+			String userNameSql = "'" + username + "'";
+			
+			String query = "select * from airplanner.vuelo where userName = " + userNameSql;
+			
+			try {
+				statementConsulta = conn.createStatement();
+				ResultSet rs = statementConsulta.executeQuery(query);
+				while (rs.next()) {
+					int idVuelo = rs.getInt("idVuelo");
+					String origen = rs.getString("origen");
+					String destino = rs.getString("destino");
+					int precio = rs.getInt("precio");
+					String fechaSalida = rs.getString("fechaSalida");
+					String oferta = rs.getString("oferta");
+					String userName = rs.getString("userName");
+					Vuelo vuelo = new Vuelo (idVuelo, origen, destino, precio, fechaSalida, oferta, userName);
+					vuelos.add(vuelo);
+				}
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return vuelos;
+		}
+		
+		public int getIdMasAlto() {
+			
+			int idMasAlto = 0;
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			
+			String sql = "select idVuelo from airplanner.vuelo order by idVuelo desc";
+			
+			try {
+				statementConsulta = conn.createStatement();
+				ResultSet rs = statementConsulta.executeQuery(sql);
+				
+				rs.next();
+				idMasAlto = rs.getInt("idVuelo");
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return idMasAlto;
+		}
+		
+		public void eliminarListaDeDeseos(String username) {
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			
+			String userNameSql = "'" + username + "'";
+			
+			String query = "delete from airplanner.vuelo where userName = " + userNameSql;
+			
+			try {
+				statementConsulta = conn.createStatement();
+				statementConsulta.executeUpdate(query);
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 
 	
 	

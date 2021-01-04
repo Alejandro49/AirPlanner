@@ -156,6 +156,7 @@ public class UsuarioDao {
 				while (rs.next()) {
 					rol = rs.getInt("rol");
 				}
+				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

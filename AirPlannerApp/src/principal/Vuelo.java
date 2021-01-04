@@ -8,11 +8,26 @@ public class Vuelo {
 	private int precio;
 	private String fechaSalida;
 	private String oferta;
+	private String userName;
 	
 	
+	public Vuelo() {
+		// TODO Auto-generated constructor stub
+	}
 	
+	public Vuelo(int idVuelo, String origen, String destino, int precio, String fechaSalida, String oferta, String userName) {
+		super();
+		this.idVuelo = idVuelo;
+		this.origen = origen;
+		this.destino = destino;
+		this.precio = precio;
+		this.fechaSalida = fechaSalida;
+		this.oferta = oferta;
+		this.userName = userName;
+	}
 	
 	public Vuelo(int idVuelo, String origen, String destino, int precio, String fechaSalida, String oferta) {
+		
 		super();
 		this.idVuelo = idVuelo;
 		this.origen = origen;
@@ -23,7 +38,7 @@ public class Vuelo {
 	}
 	
 	
-	
+
 	public int getIdVuelo() {
 		return idVuelo;
 	}
@@ -60,6 +75,20 @@ public class Vuelo {
 	public void setOferta(String oferta) {
 		this.oferta = oferta;
 	}
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	
 	
 	
 	

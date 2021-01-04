@@ -10,13 +10,17 @@ CREATE TABLE if not exists airplanner.usuario (
 	);
 	
 	
-	CREATE TABLE if not exists airplanner.vuelo (
-	idVuelo int not null auto_increment,
+
+CREATE TABLE if not exists airplanner.vuelo (
+	idVuelo int not null,
 	origen VARCHAR(30) NOT NULL,
 	destino VARCHAR(30) NOT NULL,
 	precio int NOT NULL,
 	fechaSalida date NOT NULL,
 	oferta varchar(30) not null,
-	PRIMARY KEY (idVuelo)
-	);
+	userName VARCHAR(30) NOT NULL,
+	PRIMARY KEY (idVuelo),
+	foreign key (userName) references usuario(userName) on delete cascade on update cascade
+	
+);
 

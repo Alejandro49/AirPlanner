@@ -20,8 +20,7 @@ public class MostrarVuelosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
-	
-	ArrayList<Vuelo> vuelos;    
+	ArrayList<Vuelo> vuelos;
 	
 	
     
@@ -69,7 +68,7 @@ public class MostrarVuelosServlet extends HttpServlet {
 			out.println("");
 			out.println("<H2 align=\"center\"> Mejores recomendaciones de vuelos con los datos introducidos </H2>");
 			out.println("<div align=\"center\"><center>");
-			out.println("<form method=\"POST\" action=\"listaDeseos\">");
+			out.println("<form method=\"POST\" action=\"añadirVuelo\">");
 			out.println("");
 			out.println("<table border=\"1\" width=\"70%\">");
 			
@@ -195,12 +194,16 @@ public class MostrarVuelosServlet extends HttpServlet {
 		String rangoPrecios = request.getParameter("precios");
 		
 		String fechaSalida = request.getParameter("fechaSalida");
+		String userName = (String) request.getSession().getAttribute("userName");
 		
-		int limiteSuperior = (int)(Math.random()*(15-7+1)+7);  //número aleatorio entre 15 y 7
+		int limiteInferior = obtenerIdVueloMasAlto() + 1;
+		int limiteSuperior = limiteInferior + 8;
+		
+		limiteSuperior = (int)(Math.random()*(limiteSuperior-limiteInferior+1)+limiteSuperior);  //número aleatorio entre limite superior y limite inferior
 		
 		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 		
-		for (int i = 1; i < limiteSuperior; i++) {
+		for (int i = limiteInferior; i < limiteSuperior; i++) {
 			
 			Vuelo vuelo = new Vuelo(i, origen, destino, calcularPrecio(rangoPrecios), fechaSalida, tipoDeOferta());
 			vuelos.add(vuelo);
@@ -250,6 +253,16 @@ public class MostrarVuelosServlet extends HttpServlet {
 		int rol = (int) sesion.getAttribute("rol");
 		
 		return rol;
+	}
+	
+	private int obtenerIdVueloMasAlto() {
+		int idMasAlto = 0;
+		
+		VueloDao dao = new VueloDao();
+		idMasAlto = dao.getIdMasAlto();
+		
+		
+		return idMasAlto;
 	}
 	
 
