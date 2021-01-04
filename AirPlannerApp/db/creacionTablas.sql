@@ -24,3 +24,5 @@ CREATE TABLE if not exists airplanner.vuelo (
 	
 );
 
+
+
