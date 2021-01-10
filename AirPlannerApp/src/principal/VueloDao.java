@@ -191,6 +191,24 @@ public class VueloDao {
 			}
 		}
 		
+		public void eliminarVuelo(int idVuelo) {
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			
+			String query = "delete from airplanner.vuelo where idVuelo = " + idVuelo;
+			
+			try {
+				statementConsulta = conn.createStatement();
+				statementConsulta.executeUpdate(query);
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		
 
 	

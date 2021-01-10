@@ -6,4 +6,6 @@
 
 /*delete from airplanner.vuelo where userName = 'llorente98' */
 
-select * from airplanner.vuelo where userName = 'llorente98'
+/*select * from airplanner.vuelo where userName = 'llorente98' */
+
+delete from airplanner.vuelo where idVuelo = 32
