@@ -167,4 +167,52 @@ public class UsuarioDao {
 			
 		}
 		
+		public boolean ascenderApremium (String username) {
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			
+			String userNameSql = "'" + username + "'";
+			
+			String sql = "update airplanner.usuario set rol = 2 where userName = " + userNameSql;
+			
+			try {
+				statementConsulta = conn.createStatement();
+				statementConsulta.execute(sql);
+				conn.close();
+				return true;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
+			
+		}
+		
+		public boolean cancelarSuscripcion (String username) {
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			
+			String userNameSql = "'" + username + "'";
+			
+			String sql = "update airplanner.usuario set rol = 1 where userName = " + userNameSql;
+			
+			try {
+				statementConsulta = conn.createStatement();
+				statementConsulta.execute(sql);
+				conn.close();
+				return true;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
+			
+		}
+		
 }

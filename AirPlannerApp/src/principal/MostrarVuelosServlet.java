@@ -142,7 +142,7 @@ public class MostrarVuelosServlet extends HttpServlet {
     			out.println("</form>");
         		
         	}
-			out.println("</body></html>");
+			
 		}
 			
 		 else {

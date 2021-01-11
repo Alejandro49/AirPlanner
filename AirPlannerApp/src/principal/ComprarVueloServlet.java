@@ -77,7 +77,7 @@ public class ComprarVueloServlet extends HttpServlet {
 				 
 				try {
 					out.println("<html><head><title>Vuelo comprado correctamente</title></head><body>");
-					out.println("<h2>" + "Vuelo con id: " + vuelo.getIdVuelo() +  "comprado correctamente"   + "</h2>");
+					out.println("<h2>" + "Vuelo con id: " + vuelo.getIdVuelo() +  " comprado correctamente"   + "</h2>");
 					out.println("<h4> Le enviaremos la factura por correo </h4>");
 					out.println("<h4> Eliminado de la lista de deseos </h4>");
 					out.println("<form method=\"GET\" action=\"listaDeseos\">");
@@ -102,7 +102,7 @@ public class ComprarVueloServlet extends HttpServlet {
 			 
 			 try {
 				 	out.println("<html><head><title>Vuelo comprado correctamente</title></head><body>");
-					out.println("<h2>" + "Vuelo con id: " + vuelo.getIdVuelo() +  "comprado correctamente"   + "</h2>");
+					out.println("<h2>" + "Vuelo con id: " + vuelo.getIdVuelo() +  " comprado correctamente"   + "</h2>");
 					out.println("<h4> Le enviaremos la factura por correo </h4>");
 					out.println("<h4> Eliminado de la lista de deseos </h4>");
 					out.println("<form method=\"GET\" action=\"listaDeseos\">");

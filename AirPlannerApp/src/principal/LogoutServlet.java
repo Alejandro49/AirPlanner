@@ -37,6 +37,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		String logout = request.getParameter("OPCION");
 
         if(logout.equals("no")){
@@ -63,7 +64,7 @@ public class LogoutServlet extends HttpServlet {
             String userName = (String) sesion.getAttribute("userName");
             
             
-            if (comprobarRolUsuario(request.getSession()) == 1) { // en caso de ser usuario normal, se borra la lista de deseos al salir.
+            if (comprobarRolUsuario(sesion) == 1) { // en caso de ser usuario normal, se borra la lista de deseos al salir.
             	VueloDao dao = new VueloDao();
             	dao.eliminarListaDeDeseos(userName);
         	}

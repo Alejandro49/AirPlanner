@@ -19,6 +19,8 @@ public class ListaDeseosServlet extends HttpServlet {
 	
 	ArrayList <Vuelo> vuelos;
 	
+	VueloDao vueloDao = new VueloDao();
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -28,14 +30,40 @@ public class ListaDeseosServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+		
+	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession sesion = request.getSession();
+		String userName = (String) sesion.getAttribute("userName");
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		
+		vuelos = vueloDao.obtenerListaDeseos(userName);
+		
+		if(vuelos == null || vuelos.size() == 0) {
+		  // Caso de que no haya vuelos en la lista de deseos
+			if (comprobarRolUsuario(sesion) == 1) {
+				listaDeseosVaciaUsuarioNormal(response);
+			} else {
+				listaDeseosVaciaUsuarioPremium(response);
+			}
+			return;  // para que no se siga ejecutando el método doGet
+		}
+		
 		
 		out.println("<html>");
 		out.println("");
@@ -70,11 +98,6 @@ public class ListaDeseosServlet extends HttpServlet {
 		out.println("</tr>");
 		
 		
-		HttpSession sesion = request.getSession();
-		String userName = (String) sesion.getAttribute("userName");
-		
-		VueloDao dao = new VueloDao();
-		vuelos = dao.obtenerListaDeseos(userName);
 		
 		for (Vuelo vuelo: vuelos) {
 			
@@ -90,7 +113,7 @@ public class ListaDeseosServlet extends HttpServlet {
 			
 		}
 		
-		if (comprobarRolUsuario(request.getSession()) == 1) { // Usuario normal
+		if (comprobarRolUsuario(sesion) == 1) { // Usuario normal
 			 
 			 try {
 				 	out.println("</table>");
@@ -121,8 +144,8 @@ public class ListaDeseosServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
 	}
 	
 	
@@ -131,5 +154,41 @@ public class ListaDeseosServlet extends HttpServlet {
 		
 		return rol;
 	}
+	
+	private void listaDeseosVaciaUsuarioNormal(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		try {
+			out.println("<html>");
+			out.println("<head><title> Lista de deseos </title></head>");
+			out.println("<body>");
+			out.println("<h2> Lista de deseos vacía </h2>");
+			out.println(" <input type=\"button\" onclick=\"location.href='dashboard_usuario.html'\"class=\"btn btn-outline-secondary\" value=\"Volver\">");
+			out.println("</body></html>");
+		} finally {
+			out.close();
+		}
+	}
+		
+	private void listaDeseosVaciaUsuarioPremium(HttpServletResponse response) throws IOException {
+			
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			try {
+				out.println("<html>");
+				out.println("<head><title> Lista de deseos </title></head>");
+				out.println("<body>");
+				out.println("<h2> Lista de deseos vacía </h2>");
+				out.println(" <input type=\"button\" onclick=\"location.href='dashboard_premium.html'\"class=\"btn btn-outline-secondary\" value=\"Volver\">");
+				out.println("</body></html>");
+			} finally {
+				out.close();
+			}
+		}	
+	
+	
 
 }

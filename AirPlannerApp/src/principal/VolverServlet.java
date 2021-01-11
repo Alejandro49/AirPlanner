@@ -47,11 +47,11 @@ public class VolverServlet extends HttpServlet {
         if(volver.equals("si")){
         	if (request.getSession().getAttribute("rol") != null) {
         		
-        		if (comprobarRolUsuario(request.getSession()) == 1) {
+        		if (comprobarRolUsuario(request.getSession()) == 1) { // usuario normal
             		response.sendRedirect("dashboard_usuario.html");
             		
             	} 
-        		if (comprobarRolUsuario(request.getSession()) == 2) {
+        		if (comprobarRolUsuario(request.getSession()) == 2) { // usuario premium
             		response.sendRedirect("dashboard_premium.html");
         		}
         		
