@@ -41,6 +41,9 @@ public class AscenderAPremiumServlet extends HttpServlet {
 		
 		
 		if (usuarioDao.ascenderApremium(userName)) {
+			
+			sesion.setAttribute("rol", 2);
+			
 			out.println("<html lang = \"es\">\r\n"
 					+ "\r\n"
 					+ "	<head>\r\n"

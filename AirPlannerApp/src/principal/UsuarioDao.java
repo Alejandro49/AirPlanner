@@ -212,6 +212,35 @@ public class UsuarioDao {
 				return false;
 			}
 			
+		}
+		
+		public Usuario getUsuario(String username) {
+			
+			Usuario usuario = null; 
+			
+			cargarDriver(dbdriver); 
+			Connection conn = getConnection();
+			String userNameSql = "'" + username + "'";
+			
+			String query = "select * from airplanner.usuario where userName = " + userNameSql;
+			
+			try {
+				statementConsulta = conn.createStatement();
+				ResultSet rs = statementConsulta.executeQuery(query);
+				rs.next();
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String userName = username;
+				String password = rs.getString("password");
+				int rol = rs.getInt("rol");
+				usuario = new Usuario(nombre, apellido, userName, password, rol);
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return usuario;
 			
 		}
 		

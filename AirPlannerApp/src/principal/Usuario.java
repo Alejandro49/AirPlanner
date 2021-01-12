@@ -27,6 +27,17 @@ public class Usuario {
 		this.password = password;
 		this.rol = 1;
 	}
+	
+	
+
+	public Usuario(String nombre, String apellido, String userName, String password, int rol) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.userName = userName;
+		this.password = password;
+		this.rol = rol;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -59,6 +70,15 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public int getRol() {
+		return rol;
+	}
+
+	public void setRol(int rol) {
+		this.rol = rol;
+	}
+	
 	
 	
 	

@@ -28,8 +28,21 @@ public class VolverServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		if (request.getSession().getAttribute("rol") != null) {
+    		
+    		if (comprobarRolUsuario(request.getSession()) == 1) { // usuario normal
+        		response.sendRedirect("dashboard_usuario.html");
+        		
+        	} 
+    		if (comprobarRolUsuario(request.getSession()) == 2) { // usuario premium
+        		response.sendRedirect("dashboard_premium.html");
+    		}
+    		
+    	} else {
+    		response.sendRedirect("dashboard_invitado.html");
+    	}
+		
 	}
 
 	/**

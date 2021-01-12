@@ -41,6 +41,9 @@ public class CancelarSuscripcionServlet extends HttpServlet {
 		
 		
 		if (usuarioDao.cancelarSuscripcion(userName)) {
+			
+			sesion.setAttribute("rol", 1);
+			
 			out.println("<html lang = \"es\">\r\n"
 					+ "\r\n"
 					+ "	<head>\r\n"
