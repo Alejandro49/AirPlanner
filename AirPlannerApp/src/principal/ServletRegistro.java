@@ -19,6 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name="ServletRegistro", urlPatterns={"/html/formulario"})
 
 public class ServletRegistro extends HttpServlet {
+	
+	Usuario user;
+	UsuarioDao usuarioDao = new UsuarioDao();
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -47,10 +51,9 @@ public class ServletRegistro extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
-		Usuario user = new Usuario(nombre, apellido, userName, password);
+		user = new Usuario(nombre, apellido, userName, password);
 		
-		UsuarioDao userDao = new UsuarioDao();
-		boolean usuarioRegistrado = userDao.insert(user);
+		boolean usuarioRegistrado = usuarioDao.insert(user);
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();

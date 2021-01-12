@@ -16,6 +16,10 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name="ServletLogin", urlPatterns={"/html/login"})
 public class ServletLogin extends HttpServlet {
+	
+	UsuarioDao usuarioDao = new UsuarioDao();
+	Usuario user;
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -42,14 +46,13 @@ public class ServletLogin extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		Usuario user = new Usuario(username, password);
-		UsuarioDao dao = new UsuarioDao();
+		 user = new Usuario(username, password);
 		
-		if (dao.validarUsuario(user)) {
+		if (usuarioDao.validarUsuario(user)) {
 			
 			HttpSession sesion = request.getSession();
 			sesion.setAttribute("userName", username);
-			sesion.setAttribute("rol", dao.obtenerRol(user));
+			sesion.setAttribute("rol", usuarioDao.obtenerRol(user));
 			
 			Cookie loginCookie = new Cookie("userName",user.getUserName());
 			loginCookie.setMaxAge(30*60);

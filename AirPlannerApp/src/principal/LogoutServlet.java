@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet({ "/LogoutServlet", "/html/logout" })
 public class LogoutServlet extends HttpServlet {
+	
+	VueloDao vueloDao = new VueloDao();
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -65,8 +68,8 @@ public class LogoutServlet extends HttpServlet {
             
             
             if (comprobarRolUsuario(sesion) == 1) { // en caso de ser usuario normal, se borra la lista de deseos al salir.
-            	VueloDao dao = new VueloDao();
-            	dao.eliminarListaDeDeseos(userName);
+            	
+            	vueloDao.eliminarListaDeDeseos(userName);
         	}
         	
            

@@ -17,6 +17,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet({ "/MostrarVuelosServlet", "/html/buscarVuelos" })
 public class MostrarVuelosServlet extends HttpServlet {
+	
+	VueloDao vueloDao = new VueloDao();
+	
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -259,8 +262,7 @@ public class MostrarVuelosServlet extends HttpServlet {
 	private int obtenerIdVueloMasAlto() {
 		int idMasAlto = 0;
 		
-		VueloDao dao = new VueloDao();
-		idMasAlto = dao.getIdMasAlto();
+		idMasAlto = vueloDao.getIdMasAlto();
 		
 		
 		return idMasAlto;

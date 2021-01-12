@@ -24,6 +24,8 @@ public class VueloDao {
 		private Statement statementCreacion = null;
 		boolean tablaCreada = false;
 		
+		Vuelo vuelo;
+		
 		private void cargarDriver(String dbDriver) {
 			try {
 				Class.forName(dbDriver);

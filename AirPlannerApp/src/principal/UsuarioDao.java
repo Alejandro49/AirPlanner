@@ -24,6 +24,8 @@ public class UsuarioDao {
 		private Statement statementCreacion = null;
 		boolean tablaCreada = false;
 		
+		Usuario user;
+		
 		private void cargarDriver(String dbDriver) {
 			try {
 				Class.forName(dbDriver);
@@ -216,7 +218,6 @@ public class UsuarioDao {
 		
 		public Usuario getUsuario(String username) {
 			
-			Usuario usuario = null; 
 			
 			cargarDriver(dbdriver); 
 			Connection conn = getConnection();
@@ -233,14 +234,14 @@ public class UsuarioDao {
 				String userName = username;
 				String password = rs.getString("password");
 				int rol = rs.getInt("rol");
-				usuario = new Usuario(nombre, apellido, userName, password, rol);
+				user = new Usuario(nombre, apellido, userName, password, rol);
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			return usuario;
+			return user;
 			
 		}
 		

@@ -16,6 +16,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet({ "/AnadirVueloServlet", "/html/añadirVuelo" })
 public class AnadirVueloServlet extends HttpServlet {
+	
+	 VueloDao vueloDao = new VueloDao();
+	 
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -44,13 +47,12 @@ public class AnadirVueloServlet extends HttpServlet {
 		 ArrayList<Vuelo> vuelos = (ArrayList<Vuelo>) request.getSession().getAttribute("vuelos");
 		 String userName = (String) request.getSession().getAttribute("userName");
 		 
-		 VueloDao dao = new VueloDao();
 		 boolean vueloInsertado = false;
 		 
 		 for (Vuelo vuelo: vuelos) {
 			 if (vuelo.getIdVuelo() == idVueloDeseado) {
 				 vuelo.setUserName(userName);
-				 vueloInsertado = dao.insert(vuelo);
+				 vueloInsertado = vueloDao.insert(vuelo);
 				 vueloAmeter = vuelo;
 			 }
 		 }
