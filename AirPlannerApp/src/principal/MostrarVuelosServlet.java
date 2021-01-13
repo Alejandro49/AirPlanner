@@ -62,6 +62,7 @@ public class MostrarVuelosServlet extends HttpServlet {
 			out.println("<html>");
 			out.println("");
 			out.println("<head>");
+			out.println("<meta charset = \"UTF-8\">");
 			out.println("<title> Busqueda de vuelos </title>");
 			out.println("<meta name=\"GENERATOR\" " +
 			"content=\"Microsoft FrontPage 3.0\">");

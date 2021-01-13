@@ -67,6 +67,7 @@ public class ListaDeseosServlet extends HttpServlet {
 		out.println("");
 		out.println("<head>");
 		out.println("<title> Lista de deseos </title>");
+		out.println("<meta charset = \"UTF-8\">");
 		out.println("<meta name=\"GENERATOR\" " +
 		"content=\"Microsoft FrontPage 3.0\">");
 		out.println("</head>");
@@ -126,7 +127,7 @@ public class ListaDeseosServlet extends HttpServlet {
 			 
 			 try {
 				 	out.println("</table>");
-				 	out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Añadir a la lista de deseos\" name=\"BotonEnviar\">");
+				 	out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Comprar vuelo\" name=\"BotonEnviar\">");
 				 	out.println(" <input type=\"button\" onclick=\"location.href='dashboard_premium.html'\" class=\"btn btn-primary text-white\" value=\"Volver\">");
 				 	out.println("</form>");;
 					} finally{out.close();}
